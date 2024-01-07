@@ -5,9 +5,9 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
-import { posts } from "~/server/db/schema";
+import { menuItems } from "~/server/db/schema";
 
-export const postRouter = createTRPCRouter({
+export const menuItemsRouter = createTRPCRouter({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {
@@ -22,14 +22,14 @@ export const postRouter = createTRPCRouter({
       // simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      await ctx.db.insert(posts).values({
+      await ctx.db.insert(menuItems).values({
         name: input.name,
         createdById: ctx.session.user.id,
       });
     }),
 
   getLatest: publicProcedure.query(({ ctx }) => {
-    return ctx.db.query.posts.findFirst({
+    return ctx.db.query.menuItems.findFirst({
       orderBy: (posts, { desc }) => [desc(posts.createdAt)],
     });
   }),
