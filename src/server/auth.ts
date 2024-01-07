@@ -4,7 +4,9 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
+import { type Adapter } from "next-auth/adapters";
 import DiscordProvider from "next-auth/providers/discord";
+import { type AnyMySqlDatabase } from "node_modules/@auth/drizzle-adapter/lib/utils";
 
 import { env } from "~/env";
 import { db } from "~/server/db";
@@ -46,7 +48,7 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   },
-  adapter: DrizzleAdapter(db, mysqlTable),
+  adapter: DrizzleAdapter<AnyMySqlDatabase>(db, mysqlTable) as Adapter,
   providers: [
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
