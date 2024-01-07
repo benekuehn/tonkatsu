@@ -14,7 +14,7 @@ import { type AdapterAccount } from "next-auth/adapters";
 export const mysqlTable = mysqlTableCreator((name) => `tonkatsu_${name}`);
 
 export const menuItems = mysqlTable("menuItems", {
-  id: bigint("id", { mode: "number" }).primaryKey().autoincrement(),
+  id: varchar("id", { length: 255 }).notNull().primaryKey(),
   name: varchar("name", { length: 256 }),
   createdById: varchar("createdById", { length: 255 }).notNull(),
   createdAt: timestamp("created_at")

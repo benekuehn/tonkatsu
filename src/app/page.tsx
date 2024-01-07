@@ -17,6 +17,17 @@ export default async function Home() {
           </div>
           <div className="grid gap-8 lg:grid-cols-3">
             <MenuItem />
+            <MenuItem />
+            <MenuItem />
+            <MenuItem />
+            <MenuItem />
+            <MenuItem />
+            <MenuItem />
+            <MenuItem />
+            <MenuItem />
+            <MenuItem />
+            <MenuItem />
+            <MenuItem />
           </div>
         </div>
       </section>

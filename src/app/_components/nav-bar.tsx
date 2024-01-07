@@ -1,11 +1,19 @@
+"use client";
+
+import { useCookies } from "react-cookie";
+
 export const NavBar = () => {
+  const [cookies] = useCookies(["cart"]);
+
+  const cartCount = (cookies.cart ? (cookies.cart as string)?.split(",") : [])
+    .length;
+
   return (
     <div className="flex w-full justify-between">
       <nav>
-        <a href="#">Menu</a>
+        <a href="#">Home</a>
       </nav>
-      {/* <div>{`cart (${cart?.length} items)`}</div> */}
-      <div>{`cart (0 items)`}</div>
+      <div>{`cart (${cartCount} items)`}</div>
     </div>
   );
 };
