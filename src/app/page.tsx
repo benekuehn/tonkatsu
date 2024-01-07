@@ -6,8 +6,8 @@ export default async function Home() {
   const menuItems = await api.menuItems.getLatest.query();
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      <section className="w-full py-12">
+    <main className="flex min-h-screen justify-center bg-black text-white">
+      <section className=" max-w-[916px] py-12">
         <div className="container mx-auto grid max-w-xl gap-6 px-4 md:gap-8 md:px-6 lg:max-w-none">
           <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:gap-8">
             <div className="grid gap-1">
