@@ -4,8 +4,8 @@ import {
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
-} from "~/server/api/trpc";
-import { menuItems } from "~/server/db/schema";
+} from "@/server/api/trpc";
+import { menuItems } from "@/server/db/schema";
 
 export const menuItemsRouter = createTRPCRouter({
   hello: publicProcedure

@@ -1,10 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import { api } from "~/trpc/server";
+import { MenuItem } from "./_components/menu-item";
 
 export default async function Home() {
-  const menuItems = await api.menuItems.getLatest.query();
-
   return (
     <main className="flex min-h-screen justify-center bg-black text-white">
       <section className=" max-w-[916px] py-12">
@@ -18,25 +14,7 @@ export default async function Home() {
             </div>
           </div>
           <div className="grid gap-8 lg:grid-cols-3">
-            <div className="group relative grid gap-6">
-              <Link href="#">
-                {menuItems?.imageUrl && (
-                  <Image
-                    src={menuItems.imageUrl}
-                    width={320}
-                    height={480}
-                    alt=""
-                  />
-                )}
-                <div className="grid gap-1">
-                  <h3 className="font-semibold">{menuItems?.name}</h3>
-                  <p className="text-sm leading-none">
-                    {menuItems?.description}
-                  </p>
-                  <p className="font-semibold">{`€ ${menuItems?.price}`}</p>
-                </div>
-              </Link>
-            </div>
+            <MenuItem />
           </div>
         </div>
       </section>
