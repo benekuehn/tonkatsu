@@ -1,3 +1,4 @@
+import { atom } from "jotai";
 import { MenuItem } from "./_components/menu-item";
 import { NavBar } from "./_components/nav-bar";
 

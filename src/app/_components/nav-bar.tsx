@@ -1,19 +1,32 @@
 "use client";
 
-import { useCookies } from "react-cookie";
+import { useAtom } from "jotai";
+import { cartAtom } from "../store/atom";
+import { useEffect, useState } from "react";
+import { set } from "zod";
 
 export const NavBar = () => {
-  const [cookies] = useCookies(["cart"]);
+  const [cart, setAtom] = useAtom(cartAtom);
+  const [cartItems, setCartItems] = useState(0);
 
-  const cartCount = (cookies.cart ? (cookies.cart as string)?.split(",") : [])
-    .length;
+  useEffect(() => {
+    setAtom(
+      sessionStorage.getItem("cart") !== null
+        ? sessionStorage.getItem("cart")!.split(",")
+        : [],
+    );
+  }, []);
+
+  useEffect(() => {
+    setCartItems(cart.length);
+  }, [cart]);
 
   return (
     <div className="flex w-full justify-between">
       <nav>
         <a href="#">Home</a>
       </nav>
-      <div>{`cart (${cartCount} items)`}</div>
+      <div>{`cart (${cartItems} items)`}</div>
     </div>
   );
 };

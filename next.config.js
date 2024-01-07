@@ -10,6 +10,9 @@ const config = {
   images: {
     domains: ["images.unsplash.com"],
   },
+  experimental: {
+    swcPlugins: [["@swc-jotai/react-refresh", {}]],
+  },
 };
 
 export default config;

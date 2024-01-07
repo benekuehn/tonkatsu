@@ -1,13 +1,16 @@
 "use client";
-import { useCookies } from "react-cookie";
+
+import { useAtom } from "jotai";
+import { cartAtom } from "../store/atom";
 
 export const AddToCartButton = ({ id }: { id: string }) => {
-  const [cookies, setCookie] = useCookies<string>(["cart"]);
+  const [cartState, setCart] = useAtom(cartAtom);
 
-  const cart = cookies.cart ? (cookies.cart as string)?.split(",") : [];
+  console.log(cartState);
 
   const handleOnClick = (id: string) => {
-    setCookie("cart", cart.concat(id).join(","), { path: "/" });
+    setCart(cartState.concat(id));
+    sessionStorage.setItem("cart", cartState.concat(id).toString());
   };
 
   return <button onClick={() => handleOnClick(id)}>AddToCartButton</button>;
