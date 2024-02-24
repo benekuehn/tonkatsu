@@ -1,34 +1,34 @@
-import { atom } from "jotai";
-import { MenuItem } from "./_components/menu-item";
-import { NavBar } from "./_components/nav-bar";
+import { MenuItem } from "../components/menu-item";
+import { NavBar } from "../components/nav-bar";
+import { Suspense } from "react";
+import { MenuItemsSkeleton } from "@/components/menu-item-skeleton";
 
 export default async function Home() {
   return (
     <main className="min-h-screen bg-black text-white">
       <NavBar />
-      <section className="ml-auto mr-auto flex max-w-[916px] justify-center py-12">
-        <div className="mx-auto grid max-w-xl gap-6 px-4 md:gap-8 md:px-6 lg:max-w-none">
-          <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:gap-8">
-            <div className="grid gap-1">
-              <h1 className="text-2xl font-bold tracking-tight">Our Menu</h1>
-              <p className="text-gray-500 dark:text-gray-400">
-                Discover our selection of delicious dishes.
-              </p>
-            </div>
-          </div>
+      <section className="ml-auto mr-auto flex w-[916px] flex-col justify-center py-12">
+        <h1 className="text-2xl font-bold tracking-tight">Our Menu</h1>
+        <h2 className="text-gray-500 dark:text-gray-400">
+          Discover our selection of delicious dishes.
+        </h2>
+        <div className="mx-auto mt-8 grid max-w-xl gap-6 md:gap-8 lg:max-w-none">
           <div className="grid gap-8 lg:grid-cols-3">
-            <MenuItem />
-            <MenuItem />
-            <MenuItem />
-            <MenuItem />
-            <MenuItem />
-            <MenuItem />
-            <MenuItem />
-            <MenuItem />
-            <MenuItem />
-            <MenuItem />
-            <MenuItem />
-            <MenuItem />
+            <Suspense fallback={<MenuItemsSkeleton />}>
+              <MenuItem />
+              <MenuItem />
+              <MenuItem />
+              <MenuItem />
+              <MenuItem />
+              <MenuItem />
+              <MenuItem />
+              <MenuItem />
+              <MenuItem />
+              <MenuItem />
+              <MenuItem />
+              <MenuItem />
+              <MenuItem />
+            </Suspense>
           </div>
         </div>
       </section>

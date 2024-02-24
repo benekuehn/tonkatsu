@@ -8,14 +8,6 @@ import {
 import { menuItems } from "@/server/db/schema";
 
 export const menuItemsRouter = createTRPCRouter({
-  hello: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input.text}`,
-      };
-    }),
-
   // create: protectedProcedure
   //   .input(z.object({ name: z.string().min(1) }))
   //   .mutation(async ({ ctx, input }) => {
@@ -28,7 +20,9 @@ export const menuItemsRouter = createTRPCRouter({
   //     });
   //   }),
 
-  getLatest: publicProcedure.query(({ ctx }) => {
+  getLatest: publicProcedure.query(async ({ ctx }) => {
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
+
     return ctx.db.query.menuItems.findFirst({
       orderBy: (posts, { desc }) => [desc(posts.createdAt)],
     });
